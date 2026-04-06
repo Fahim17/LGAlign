@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import torch.nn.functional as F
 import torchvision
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, Dataset
@@ -381,8 +382,12 @@ class CLIP_model(nn.Module):
 
 # -----------------------------------------------------------
             xlt = self.vis_txt_L1(xlt)
+            xlt = F.relu(xlt)
             xlt = self.vis_txt_L2(xlt)
+            xlt = F.relu(xlt)
             xlt = self.vis_txt_L3(xlt)
+            xlt = F.relu(xlt)
+
             # xlt = self.vis_txt_L4(xlt)
             # xlt = self.vis_txt_L5(xlt)
             # xlt = self.vis_txt_L6(xlt)
@@ -390,8 +395,12 @@ class CLIP_model(nn.Module):
 
 
             xq = self.vis_L1(xq)
+            xlt = F.relu(xlt)
             xq = self.vis_L2(xq)
+            xlt = F.relu(xlt)
             xq = self.vis_L3(xq)
+            xlt = F.relu(xlt)
+
             # xq = self.vis_L4(xq)
             # xq = self.vis_L5(xq)
             # xq = self.vis_L6(xq)
